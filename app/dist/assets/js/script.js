@@ -1,58 +1,36 @@
 $(document).ready(function(){
     $.ajax({
         type:"get",
+        dataType: "JSON",
         url: "https://api.jcdecaux.com/vls/v1/stations?contract=lyon&apiKey=c550df80380ca765b4ddde78c75d8c16fa8fc50d",
-        success: function(data){
-            console.log(data);
+    //     success: function(data){
+    //         console.log(data);
+    //     },
+    //     error: function(data){
+    //         console.log("error");
+    //     }
+    // })
+            success: function(data){
+            console.log(data); // data = infos de l'api jcdécaux
+            data.forEach(function(marker){ // Boucle pour créer et positionner les marqueurs
+                // Créer l'élement pour le marqueur         
+                var el = document.createElement('div'); // Créer une nouvelle variable el dans une nouvelle div dans le HTML
+                el.id = 'marker'; // Indique que la nouvelle variable s'apelle marker
+                console.log(marker); // Vérification dans la console qu'on récupère tout les ID
+
+                // Ajouter les marqueurs pour chaque position à la Map
+                new mapboxgl.Marker(marker) // Création de nouveaux marqueurs
+                    .setLngLat(marker.position) // Va chercher la position Longitute et Latitude dans Marker
+                    .setPopup(new mapboxgl.Popup({ offset: 25 }) // Ajouter les POP UP
+                    .setHTML('<h3>' + marker.name + '</h3><p>' + marker.address + '</p>')) // Affiche le titre et la description dans le POP UP
+                    .addTo(map); // Ajoute les marqueurs sur la carte
+
+                // Ajouter un Pop Up
+
+            })
         },
         error: function(data){
-            console.log("error");
+            console.error(); // Affiche les erreurs
         }
     })
-})
-$("#form").on("submit", function(event){
-    event.preventDefault();
-    // Récupérer pseudo du formulaire
-    pseudo = $("input[name=pseudo]").val();
-    
-    // Récupérer password du formulaire
-    password = $("input[type=password]").val();
-    
-    // Stocker dans un tableau les deux valeurs
-    tabForm = [pseudo, password];
-    //console.log(tabForm);
-    
-    // Stocker dans un objet les deux valeurs
-    objForm = {
-        "pseudo": pseudo,
-        "password": password
-    }
-    // console.log(objForm);
-    // console.log(objForm.pseudo); // Select attribut pseudo
-
-    serializeForm = $(this).serialize();
-    // console.log(serializeForm);
-    
-    $.ajax({
-        type:"get",
-        url: "script.php",
-        data: serializeForm,
-        success: function(data){
-            console.log(data);
-            data = JSON.parse(data);
-
-            if(data.error){
-                console.log("Erreur de connexion");
-            }else{
-                // Afficher la map
-                $("#map").show();
-                // Supprimer le formulaire
-                $("#form").hide();
-            }
-        },
-        error: function(data){
-            console.log("error");
-        }
-    })
-
 })
