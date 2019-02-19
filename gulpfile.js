@@ -1,5 +1,6 @@
 // Requis
 var gulp = require('gulp');
+var concat = require('gulp-concat');
 
 // Include plugins
 var plugins = require('gulp-load-plugins')(); // tous les plugins de package.json
@@ -17,6 +18,14 @@ gulp.task('sass', function () {
         .pipe(plugins.autoprefixer())
         .pipe(gulp.dest(destination + '/assets/css/'))
         .pipe(browserSync.stream());
+});
+
+// Tâche concat script
+
+gulp.task('scripts', function() {
+  return gulp.src([source +'/assets/js/*.js'])
+    .pipe(concat('all.js'))
+    .pipe(gulp.dest(destination + '/assets/js'));
 });
 
 // Tâche "minify" = minification CSS (destination -> destination)
