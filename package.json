@@ -12,5 +12,8 @@
     "gulp-load-plugins": "latest",
     "gulp-rename": "latest",
     "gulp-sass": "latest"
+  },
+  "dependencies": {
+    "gulp-uglify-es": "^1.0.4"
   }
 }

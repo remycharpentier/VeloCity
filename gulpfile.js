@@ -5,6 +5,7 @@ var concat = require('gulp-concat');
 // Include plugins
 var plugins = require('gulp-load-plugins')(); // tous les plugins de package.json
 var browserSync = require('browser-sync').create();
+let uglify = require('gulp-uglify-es').default;
 
 // Variables de chemins
 var source = './app/src'; // dossier de travail
@@ -20,13 +21,15 @@ gulp.task('sass', function () {
         .pipe(browserSync.stream());
 });
 
-// Tâche concat script
+// Tâche concat scripts
 
 gulp.task('scripts', function() {
-  return gulp.src([source +'/assets/js/*.js'])
-    .pipe(concat('all.js'))
-    .pipe(gulp.dest(destination + '/assets/js'));
+  return gulp.src(source +'/assets/js/*.js')
+    .pipe(plugins.concat('all.js'))
+    .pipe(gulp.dest(destination + '/assets/js'))
+    .pipe(browserSync.stream());
 });
+
 
 // Tâche "minify" = minification CSS (destination -> destination)
 gulp.task('minify', function () {
@@ -54,10 +57,11 @@ gulp.task('default', ['build']);
 //     gulp.watch(source + '/assets/sass/*.scss', ['build']);
 //   });
 
-  gulp.task('serve', ['sass'], function() {
-    browserSync.init({
-        server: "./app"
-    });
-    gulp.watch(source + "/assets/sass/*.scss", ['sass']);
-    gulp.watch("app/*.html").on('change', browserSync.reload);
+  gulp.task('serve', ['sass','scripts'], function() {
+  browserSync.init({
+      server: "./app"
+  });
+  gulp.watch(`${source}/assets/sass/*.scss`, ['sass']);
+  gulp.watch(`${source}/assets/js/*.js`, ['scripts']);
+  gulp.watch("app/*.html").on('change', browserSync.reload);
 });

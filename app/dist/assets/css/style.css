@@ -1,0 +1,140 @@
+/***********************************************************************************************/
+/***************************************** GENERAL *********************************************/
+/***********************************************************************************************/
+html {
+  overflow-y: hidden;
+}
+
+h3 {
+  font-size: 22px;
+}
+
+.logo2 {
+  position: relative;
+  bottom: -1px;
+  left: 5px;
+  width: 52px;
+}
+
+.navbar-velocity {
+  position: relative;
+  top: 3px;
+  left: 5px;
+}
+
+#burger {
+  visibility: none;
+}
+
+/***********************************************************************************************/
+/****************************************** FIRST **********************************************/
+/***********************************************************************************************/
+.login-container {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.login-form-1 {
+  padding: 5%;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, .2), 0 9px 26px 0 rgba(0, 0, 0, .19);
+}
+
+.login-form-1 h3 {
+  text-align: center;
+  color: #333;
+}
+
+.login-form-2 {
+  padding: 5%;
+  background: #0062cc;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, .2), 0 9px 26px 0 rgba(0, 0, 0, .19);
+}
+
+.login-form-2 h3 {
+  text-align: center;
+  color: #fff;
+}
+
+.login-container form {
+  padding: 10%;
+}
+
+.btnSubmit {
+  width: 50%;
+  padding: 1.5%;
+  cursor: pointer;
+  border: none;
+  border-radius: 1rem;
+}
+
+.login-form-1 .btnSubmit {
+  font-weight: 600;
+  color: #fff;
+  background-color: #0062cc;
+}
+
+.login-form-2 .btnSubmit {
+  font-weight: 600;
+  color: #0062cc;
+  background-color: #fff;
+}
+
+.login-form-2 .ForgetPwd {
+  font-weight: 600;
+  text-decoration: none;
+  color: #fff;
+}
+
+.login-form-1 .ForgetPwd {
+  font-weight: 600;
+  text-decoration: none;
+  color: #0062cc;
+}
+
+.ta-center,
+.login-container input {
+  text-align: center;
+}
+
+.login-cont-btn {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.login-cont-t1 {
+  margin-top: 0;
+}
+
+.login-cont-t2 {
+  margin-top: 20px;
+}
+
+.login-form-1 form {
+  padding-bottom: 0;
+}
+
+/***********************************************************************************************/
+/****************************************** INDEX **********************************************/
+/***********************************************************************************************/
+#map {
+  top: 0;
+  bottom: 0;
+  display: none;
+  width: 1880px;
+  height: 900px;
+}
+
+.marker {
+  width: 50px;
+  cursor: pointer;
+  background-size: cover;
+}
+
+.mapboxgl-popup {
+  max-width: 250px;
+}
+
+.mapboxgl-popup-content {
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+}
