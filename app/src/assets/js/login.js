@@ -18,10 +18,13 @@ $("#formLogin").on("submit", function(event){ // event permet de ne pas recherch
         type : "POST",
         url : `${urlAPI}/checkUser.php`,
         data : serializeFormLogin,
+
         success: function(data){
             console.log(data);
             data = JSON.parse(data);
             console.log(data); // Transformé en JSON
+
+            user = data;
 
             if (data.username){
                 $("#formLogin").hide(); // Cache la map tant qu'on est pas log
@@ -40,6 +43,3 @@ $("#formLogin").on("submit", function(event){ // event permet de ne pas recherch
     })
 
 })
-
-// Ajax request qui renvoie vers (checkuser.php) faire echo hello world
-
